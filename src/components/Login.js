@@ -1,34 +1,22 @@
 import axios from "axios";
 
-export default function SignUp() {
+export default function Login() {
     async function handleSubmit(event) {
-         await axios.post("http://localhost:4001/register",{
+        event.preventDefault();
+        await axios.post("http://localhost:4001/login",{
             header: "Content-Type: application/json",
-            first_name: event.target.elements.namedItem("firstName").value,
-            last_name: event.target.elements.namedItem("lastName").value,
             email: event.target.elements.namedItem("email").value,
             password: event.target.elements.namedItem("password").value
-        }).catch(function (error) {
+        })
+            .then(res => console.log(res))
+            .catch(function (error) {
             console.log(error);
         });
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <h3>Sign Up</h3>
-            <div className="mb-3">
-                <label>First name</label>
-                <input
-                    name="firstName"
-                    type="text"
-                    className="form-control"
-                    placeholder="First name"
-                />
-            </div>
-            <div className="mb-3">
-                <label>Last name</label>
-                <input name="lastName" type="text" className="form-control" placeholder="Last name" />
-            </div>
+            <h3>Sign In</h3>
             <div className="mb-3">
                 <label>Email address</label>
                 <input
@@ -47,13 +35,25 @@ export default function SignUp() {
                     placeholder="Enter password"
                 />
             </div>
+            <div className="mb-3">
+                <div className="custom-control custom-checkbox">
+                    <input
+                        type="checkbox"
+                        className="custom-control-input"
+                        id="customCheck1"
+                    />
+                    <label className="custom-control-label" htmlFor="customCheck1">
+                        Remember me
+                    </label>
+                </div>
+            </div>
             <div className="d-grid">
                 <button type="submit" className="btn btn-primary">
-                    Sign Up
+                    Submit
                 </button>
             </div>
             <p className="forgot-password text-right">
-                Already registered <a href="/sign-in">sign in?</a>
+                Forgot <a href="#">password?</a>
             </p>
         </form>
     )
