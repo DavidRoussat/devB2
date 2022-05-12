@@ -8,7 +8,13 @@ export default function SignUp() {
             last_name: event.target.elements.namedItem("lastName").value,
             email: event.target.elements.namedItem("email").value,
             password: event.target.elements.namedItem("password").value
-        }).catch(function (error) {
+        })
+             .then(res => {
+                 sessionStorage.setItem("token", res.data.token)
+                 sessionStorage.setItem("id", res.data._id)
+                 window.location.href = "/"
+             })
+             .catch(function (error) {
             console.log(error);
         });
     }

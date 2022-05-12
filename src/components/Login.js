@@ -1,17 +1,21 @@
 import axios from "axios";
 
 export default function Login() {
+
     async function handleSubmit(event) {
-        event.preventDefault();
-        await axios.post("http://localhost:4001/login",{
-            header: "Content-Type: application/json",
+        event.preventDefault()
+        await axios.post("http://localhost:4001/login", {
             email: event.target.elements.namedItem("email").value,
             password: event.target.elements.namedItem("password").value
         })
-            .then(res => console.log(res))
-            .catch(function (error) {
-            console.log(error);
-        });
+            .then(res => {
+                sessionStorage.setItem("token", res.data.token)
+                sessionStorage.setItem("id", res.data._id)
+                window.location.href = "/"
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     return (
@@ -52,9 +56,6 @@ export default function Login() {
                     Submit
                 </button>
             </div>
-            <p className="forgot-password text-right">
-                Forgot <a href="#">password?</a>
-            </p>
         </form>
     )
 }
