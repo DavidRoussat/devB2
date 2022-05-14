@@ -10,14 +10,15 @@ export default function Login() {
         })
             .then(res => {
                 sessionStorage.setItem("token", res.data.token)
+                sessionStorage.setItem("firstName", res.data.first_name)
                 sessionStorage.setItem("id", res.data._id)
+                sessionStorage.setItem("personnages", JSON.stringify(res.data.personnages))
                 window.location.href = "/"
             })
             .catch((error) => {
                 console.log(error);
             });
     }
-
     return (
         <form onSubmit={handleSubmit}>
             <h3>Sign In</h3>

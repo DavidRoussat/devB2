@@ -20,6 +20,7 @@ export default function OneGame() {
     function handleJoin(event) {
         const participants = game.participants
         if (participants.includes(sessionStorage.getItem("id"))) return alert("Vous êtes déjà inscrit.e")
+        if(JSON.parse(sessionStorage.getItem("personnages")))
         axios.post("http://localhost:4001/joingame", {
             participant: sessionStorage.getItem("id"),
         }, {

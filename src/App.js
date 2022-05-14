@@ -57,7 +57,9 @@ export default function App() {
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/personnages"}>Personnages</Link>
                                 </li>
-                                <li className="nav-link">Rejoindre une partie</li>
+                                <li className="nav-item" >
+                                    <Link className="nav-link" to={"/games"}>Rejoindre une partie</Link>
+                                </li>
                             </ul>
                         </div>
                     </div>

@@ -13,11 +13,12 @@ export default function Personnages() {
             )
                 .then(res => {
                     setPero(res.data)
+                    sessionStorage.setItem("personnages", JSON.stringify(perso))
                 })
         } catch {
             window.location.href = "/sign-in"
         }
-    }, [])
+    }, [perso])
 
     return (
         <div>
