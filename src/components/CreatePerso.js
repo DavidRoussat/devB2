@@ -27,7 +27,7 @@ export default function CreatePerso() {
         }, {headers: {
                 "content-type": "application/json",
                 "x-access-token": sessionStorage.getItem("token")
-            }})
+            }}).then(()=> window.location.href= "/personnages")
     }
 
     return (

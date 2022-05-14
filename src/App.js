@@ -18,9 +18,8 @@ export default function App() {
     async function logged() {
         if (!sessionStorage.getItem("token")) return setIsConnected(false)
         try {
-            await isAuthentificated().then(onFullfilled => {
+            await isAuthentificated().then(() => {
                 setIsConnected(true)
-                return onFullfilled
             })
         } catch (e) {
             console.log(e)
