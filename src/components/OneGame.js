@@ -7,7 +7,6 @@ export default function OneGame() {
     const [game, setGame] = useState(null)
     const [isOwner, setIsOwner] = useState(false)
     const [scenario, setScenario] = useState("")
-    const [personnage, setPersonnage] = useState(null)
     useEffect(() => {
         axios.get("http://localhost:4001/onegame", {
             headers: {
@@ -19,7 +18,7 @@ export default function OneGame() {
             setGame(res.data)
             if (game && game.participants[0] === sessionStorage.getItem("id")) setIsOwner(true)
         })
-    }, [game])
+    }, [game, params.id])
 
     function handleJoin(event) {
         event.preventDefault()
@@ -57,7 +56,18 @@ export default function OneGame() {
                headers: {
                    "content-type": "application/json",
                }
-           }).then(res => setScenario(res.data))
+           }).then(res => {
+               setScenario(res.data)
+               axios.post("http://localhost:4001/addscenario", {
+                   gameId: params.id,
+                   scenario: scenario
+               }, {
+                   headers: {
+                       "content-type": "application/json",
+                       "x-access-token": sessionStorage.getItem("token")
+                   }
+               })
+           })
        })
     }
 console.log(scenario)
