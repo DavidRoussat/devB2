@@ -3,7 +3,7 @@ import axios from "axios";
 export default function CreatePerso() {
     async function handleSubmit(event) {
         event.preventDefault()
-        await axios.post("http://localhost:4001/createperso", {
+        await axios.post("http://10.0.1.10:4001/createperso", {
                 perso: {
                     nom: event.target.elements.namedItem("nom").value,
                     race: event.target.elements.namedItem("race").value,
