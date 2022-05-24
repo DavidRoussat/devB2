@@ -3,7 +3,7 @@ import axios from "axios";
 export default function SignUp() {
     async function handleSubmit(event) {
         event.preventDefault()
-         await axios.post("http://localhost:4001/register",{
+         await axios.post("http://10.0.1.10:4001/register",{
             header: "Content-Type: application/json",
             first_name: event.target.elements.namedItem("firstName").value,
             last_name: event.target.elements.namedItem("lastName").value,
